@@ -2,4 +2,4 @@
 
 #### [Challenge-Two](Challenge-Two) - Play Fetch
 
-#### [Challenge-Three](Challenge-Three) - 
+#### [Challenge-Three](Challenge-Three) - Run and Jump
