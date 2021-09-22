@@ -5,3 +5,5 @@
 #### [Challenge-3](Challenge-3) - Run and Jump
 
 #### [Challenge-4](Challenge-4) - Soccer Scripting
+
+#### [Challenge-5](Challenge-5) - Whack a Food
