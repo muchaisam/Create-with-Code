@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager singleton;
-    
+    private AudioSource audioSource;
     private Ground [] allGrounds;
+    private int level = 5;
 
     void Start()
     {
@@ -45,24 +46,33 @@ public class GameManager : MonoBehaviour
     {
         bool isFinished = true;
 
-        for(int i = 0; i < allGrounds.Length; i++)
+        for (int i = 0; i< allGrounds.Length; i++)
         {
-            if (allGrounds[i].isColored == false)
+            if(allGrounds[i].isColored == false)
             {
                 isFinished = false;
                 break;
             }
         }
-
         if (isFinished)
         {
-            //NextLevel
+            //Next level method
+            NextLevel();
         }
     }
 
     private void NextLevel()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        StartCoroutine(PlayMusicOnCompleted());
+    }
+
+    IEnumerator PlayMusicOnCompleted()
+    {
+        BallController.singleton.StopMusic();
+        audioSource.Play();
+        yield return new WaitForSeconds(2);
+
+        if (SceneManager.GetActiveScene().buildIndex == level - 1)
         {
             SceneManager.LoadScene(0);
         }
@@ -70,6 +80,6 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-    }
+    } 
    
 }
