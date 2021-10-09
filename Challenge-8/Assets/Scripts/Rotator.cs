@@ -8,16 +8,26 @@ public class Rotator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (!GameManager.isGameStarted)
+            return;
+        //PC Stuff
+        // if (Input.GetMouseButton(0))
+        // {
+        //     float mouseX = Input.GetAxisRaw("Mouse X");
+        //     transform.Rotate(0, mouseX * rotationSpeed * Time.deltaTime, 0);
+        // }
+
+        //mobile
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
-            float mouseX = Input.GetAxisRaw("Mouse X");
-            transform.Rotate(0, mouseX * rotationSpeed * Time.deltaTime, 0);
+            float xDelta = Input.GetTouch(0).deltaPosition.x;
+            transform.Rotate(0, -xDelta * rotationSpeed * Time.deltaTime, 0);
         }
     }
 }
